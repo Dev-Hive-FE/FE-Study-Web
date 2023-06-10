@@ -2,13 +2,19 @@
   <ModalWindow
     :rooms="rooms"
     :modalOpen="modalOpen"
-    @closeModal="modalOpen = false"
+    @closeModal="changeModal"
     :index="index"
   />
 
   <!-- 메뉴목록 -->
   <div class="menu">
     <a v-for="(menu, index) in menus" :key="index">{{ menu }}</a>
+  </div>
+
+  <div class="sortBtn">
+    <button @click="nameSort">이름정렬</button>
+    <button @click="priceSort">가격정렬</button>
+    <button @click="backOrigin">원상복구</button>
   </div>
 
   <!--원룸 목록-->
@@ -31,11 +37,28 @@ export default {
       modalOpen: false,
       rooms: 원룸데이터,
       index: 0,
+      copy: [...원룸데이터],
     };
   },
   methods: {
     clickHandler() {
       this.modalOpen = true;
+    },
+    changeModal() {
+      this.modalOpen = "$event";
+    },
+    nameSort() {
+      this.rooms.sort(function (a, b) {
+        return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
+      });
+    },
+    priceSort() {
+      this.rooms.sort(function (a, b) {
+        return a.price - b.price;
+      });
+    },
+    backOrigin() {
+      this.rooms = this.copy;
     },
   },
   components: {
@@ -55,14 +78,26 @@ export default {
   padding: 10px;
 }
 
+.sortBtn {
+  text-align: center;
+}
+
+button {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 img {
   width: 100%;
 }
 
 body {
   margin: 0;
+  text-align: center;
 }
 div {
   box-sizing: border-box;
+  text-align: center;
 }
 </style>

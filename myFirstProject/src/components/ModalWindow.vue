@@ -4,7 +4,10 @@
       <img :src="rooms[index].image" />
       <h4>{{ rooms[index].title }}</h4>
       <p>{{ rooms[index].content }}</p>
-      <button @click="$emit('closeModal')">닫기</button>
+      <p>{{ rooms[index].price }}원</p>
+      <input type="text" v-model="data" />
+      <h4>현재 {{ data * rooms[index].price }}원 입니다.</h4>
+      <button @click="$emit('closeModal', false)">닫기</button>
     </div>
   </div>
 </template>
@@ -15,6 +18,24 @@ export default {
     modalOpen: Boolean,
     rooms: Object,
     index: Number,
+  },
+  data() {
+    return {
+      data: "",
+    };
+  },
+  methods: {},
+  watch: {
+    data(data) {
+      if (data > 12) {
+        alert("12개월까지만 입력");
+        this.data = 1;
+      }
+      if (isNaN(data)) {
+        alert("숫자만 입력해라");
+        this.data = 1;
+      }
+    },
   },
 };
 </script>
