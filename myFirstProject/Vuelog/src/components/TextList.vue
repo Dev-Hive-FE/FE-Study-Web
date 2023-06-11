@@ -4,7 +4,7 @@
       <div class="card-header">{{ item.date }}</div>
       <div class="card-body text-secondary">
         <h5 class="card-title">{{ item.title }}</h5>
-        <button @click="this.$router.push('/TextList/Detail/' + index)">
+        <button @click="this.$router.push(`/TextList/Detail/${index}`)">
           상세보기
         </button>
       </div>
@@ -18,9 +18,10 @@ import data from "../data/data.js";
 export default {
   name: "TextList",
   data() {
-    return {
-      data: data,
-    };
+    return {};
+  },
+  props: {
+    data: Array,
   },
 };
 </script>

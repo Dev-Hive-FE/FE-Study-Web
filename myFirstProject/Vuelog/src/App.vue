@@ -2,7 +2,16 @@
   <NavBar />
   <br />
   <h4>Vuelog</h4>
-  <router-view />
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <router-view :data="data" />
+  </div>
 </template>
 
 <script>

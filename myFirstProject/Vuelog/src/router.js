@@ -9,7 +9,7 @@ const routes = [
     component: TextList,
   },
   {
-    path: "/TextList/Detail:id",
+    path: "/TextList/Detail/:id",
     component: TextDetail,
   },
   {
